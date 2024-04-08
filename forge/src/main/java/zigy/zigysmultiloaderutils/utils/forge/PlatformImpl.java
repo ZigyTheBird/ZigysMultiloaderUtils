@@ -6,6 +6,7 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.forgespi.language.IModInfo;
 import org.spongepowered.asm.service.MixinService;
 import zigy.zigysmultiloaderutils.misc.ModEnv;
+import zigy.zigysmultiloaderutils.misc.ModLoader;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -52,5 +53,9 @@ public class PlatformImpl {
             }
         }
         return null;
+    }
+
+    public static ModLoader getLoader() {
+        return ModLoader.Forge;
     }
 }
