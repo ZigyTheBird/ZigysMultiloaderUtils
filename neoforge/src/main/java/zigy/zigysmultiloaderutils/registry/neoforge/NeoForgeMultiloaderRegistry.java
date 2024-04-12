@@ -1,7 +1,7 @@
 package zigy.zigysmultiloaderutils.registry.neoforge;
 
 import net.minecraft.core.Registry;
-import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import zigy.zigysmultiloaderutils.registry.MultiloaderRegistry;
 import zigy.zigysmultiloaderutils.registry.RegistryEntries;
@@ -33,6 +33,7 @@ import java.util.function.Supplier;
  *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *SOFTWARE.
  */
+
 public class NeoForgeMultiloaderRegistry<T> implements MultiloaderRegistry<T> {
 
     private final DeferredRegister<T> register;
@@ -54,6 +55,6 @@ public class NeoForgeMultiloaderRegistry<T> implements MultiloaderRegistry<T> {
 
     @Override
     public void init() {
-        register.register(NeoForge.EVENT_BUS);
+        register.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 }
