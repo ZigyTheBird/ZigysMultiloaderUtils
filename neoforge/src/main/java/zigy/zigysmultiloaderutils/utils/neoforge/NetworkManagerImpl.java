@@ -8,7 +8,6 @@ import org.jetbrains.annotations.Nullable;
 import zigy.zigysmultiloaderutils.neoforge.network.MultiloaderPacket;
 import zigy.zigysmultiloaderutils.utils.NetworkManager;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,14 +15,8 @@ public class NetworkManagerImpl {
 
     public static Map<ResourceLocation, NetworkManager.NetworkReciever> recieverMap = new HashMap<>();
 
-    public static void sendToPlayers(Collection<ServerPlayer> players, ResourceLocation packet, FriendlyByteBuf buf) {
-        for (ServerPlayer player : players) {
-            sendToPlayer(player, packet, buf);
-        }
-    }
-
     public static void sendToPlayer(ServerPlayer player, ResourceLocation packet, FriendlyByteBuf buf) {
-        PacketDistributor.PLAYER.with(player).send(new MultiloaderPacket(buf, packet));
+        PacketDistributor.PLAYER.with(player).send(new MultiloaderPacket((FriendlyByteBuf) buf.copy(), packet));
     }
 
     public static void sendToServer(ResourceLocation packet, FriendlyByteBuf buf) {
