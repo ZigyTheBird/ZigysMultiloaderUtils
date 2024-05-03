@@ -16,7 +16,7 @@ public class NetworkManagerImpl {
     public static Map<ResourceLocation, NetworkManager.NetworkReciever> recieverMap = new HashMap<>();
 
     public static void sendToPlayer(ServerPlayer player, ResourceLocation packet, FriendlyByteBuf buf) {
-        PacketDistributor.PLAYER.with(player).send(new MultiloaderPacket((FriendlyByteBuf) buf.copy(), packet));
+        PacketDistributor.PLAYER.with(player).send(new MultiloaderPacket(buf, packet));
     }
 
     public static void sendToServer(ResourceLocation packet, FriendlyByteBuf buf) {

@@ -7,8 +7,6 @@ import zigy.zigysmultiloaderutils.fabric.network.ClientNetworking;
 import zigy.zigysmultiloaderutils.fabric.network.ServerNetworking;
 import zigy.zigysmultiloaderutils.utils.NetworkManager;
 
-import java.util.Collection;
-
 public class NetworkManagerImpl {
     public static void sendToPlayer(ServerPlayer player, ResourceLocation packet, FriendlyByteBuf buf) {
         ServerNetworking.sendToPlayer(player, packet, buf);
