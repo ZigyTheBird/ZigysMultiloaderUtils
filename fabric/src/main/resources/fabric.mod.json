@@ -16,10 +16,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "zigy.zigysmultiloaderutils.fabric.MultiloaderUtilsFabric"
+      "com.zigythebird.multiloaderutils.fabric.MultiloaderUtilsFabric"
     ],
     "client": [
-      "zigy.zigysmultiloaderutils.fabric.MultiloaderUtilsFabricClient"
+      "com.zigythebird.multiloaderutils.fabric.MultiloaderUtilsFabricClient"
     ]
   },
   "mixins": [
