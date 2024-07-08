@@ -4,6 +4,7 @@ import com.zigythebird.multiloaderutils.misc.ModEnv;
 import com.zigythebird.multiloaderutils.misc.ModLoader;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.forgespi.language.IModInfo;
 import org.spongepowered.asm.service.MixinService;
@@ -57,5 +58,9 @@ public class PlatformImpl {
 
     public static ModLoader getLoader() {
         return ModLoader.Forge;
+    }
+
+    public static boolean isDevelopmentEnvironment() {
+        return !FMLLoader.isProduction();
     }
 }
