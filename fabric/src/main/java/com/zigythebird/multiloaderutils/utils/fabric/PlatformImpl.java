@@ -38,4 +38,8 @@ public class PlatformImpl {
     public static ModLoader getLoader() {
         return ModLoader.Fabric;
     }
+
+    public static boolean isDevelopmentEnvironment() {
+        return FabricLoader.getInstance().isDevelopmentEnvironment();
+    }
 }

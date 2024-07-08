@@ -4,6 +4,7 @@ import com.zigythebird.multiloaderutils.misc.ModEnv;
 import com.zigythebird.multiloaderutils.misc.ModLoader;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforgespi.language.IModInfo;
 import org.spongepowered.asm.service.MixinService;
@@ -56,4 +57,8 @@ public class PlatformImpl {
     }
 
     public static ModLoader getLoader() {return ModLoader.NeoForge;}
+
+    public static boolean isDevelopmentEnvironment() {
+        return !FMLLoader.isProduction();
+    }
 }
