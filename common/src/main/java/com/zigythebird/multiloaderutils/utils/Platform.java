@@ -11,27 +11,32 @@ public class Platform {
 
     @ExpectPlatform
     public static boolean isModLoaded(String modID) {
-        throw new NotImplementedException();
+        throw new AssertionError();
     }
 
     @ExpectPlatform
     public static boolean isModLoaded(String modID, String modClass) {
-        throw new NotImplementedException();
+        throw new AssertionError();
     }
 
     @ExpectPlatform
-    public static String getModVersion(String modID) {throw new NotImplementedException();}
+    public static String getModVersion(String modID) {throw new AssertionError();}
 
     @ExpectPlatform
     public static Path getConfigFolder() {
-        throw new NotImplementedException();
+        throw new AssertionError();
     }
 
     @ExpectPlatform
     public static ModEnv getEnv() {
-        throw new NotImplementedException();
+        throw new AssertionError();
     }
 
     @ExpectPlatform
-    public static ModLoader getLoader() {throw new NotImplementedException();}
+    public static ModLoader getLoader() {throw new AssertionError();}
+
+    @ExpectPlatform
+    public static boolean isDevelopmentEnvironment() {
+        throw new AssertionError();
+    }
 }
