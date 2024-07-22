@@ -45,7 +45,7 @@ public class FabricMultiloaderRegistry<T> implements MultiloaderRegistry<T> {
 
     @Override
     public <I extends T> RegistryEntry<I> register(String id, Supplier<I> supplier) {
-        return entries.add(FabricRegistryEntry.of(this.registry, new ResourceLocation(this.id, id), supplier));
+        return entries.add(FabricRegistryEntry.of(this.registry, ResourceLocation.fromNamespaceAndPath(this.id, id), supplier));
     }
 
     @Override

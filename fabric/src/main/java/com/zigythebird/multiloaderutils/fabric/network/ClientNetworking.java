@@ -1,41 +1,18 @@
 package com.zigythebird.multiloaderutils.fabric.network;
 
-import com.zigythebird.multiloaderutils.misc.ModEnv;
-import io.netty.buffer.Unpooled;
+import com.zigythebird.multiloaderutils.fabric.MultiloaderUtilsFabricClient;
+import com.zigythebird.multiloaderutils.network.MultiloaderPacket;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Player;
 import com.zigythebird.multiloaderutils.utils.NetworkManager;
-import com.zigythebird.multiloaderutils.utils.Platform;
-
-import java.util.Optional;
 
 public class ClientNetworking {
     public static void sendToServer(ResourceLocation packet, FriendlyByteBuf data) {
-        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
-        buf.writeInt(data.readableBytes());
-        buf.writeBytes(data);
-        ClientPlayNetworking.send(packet, buf);
+        ClientPlayNetworking.send(new MultiloaderPacket(data, packet));
     }
 
     public static void register(ResourceLocation id, NetworkManager.NetworkInterface networkInterface) {
-        ClientPlayNetworking.registerGlobalReceiver(id, (client, handler, buf, responseSender) -> {
-            FriendlyByteBuf data = new FriendlyByteBuf(buf.readBytes(buf.readInt()));
-
-            client.execute(() -> {
-                networkInterface.receive(data, new NetworkManager.PacketContext() {
-                    @Override
-                    public Optional<Player> getPlayer() {
-                        return Optional.empty();
-                    }
-
-                    @Override
-                    public ModEnv getEnvironment() {
-                        return Platform.getEnv();
-                    }
-                });
-            });
-        });
+        MultiloaderUtilsFabricClient.recieverMap.put(id, networkInterface);
     }
 }

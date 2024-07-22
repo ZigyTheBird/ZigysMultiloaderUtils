@@ -1,5 +1,6 @@
 package com.zigythebird.multiloaderutils.utils.fabric;
 
+import com.zigythebird.multiloaderutils.network.MultiloaderPacket;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -15,12 +16,12 @@ public class MenuUtilsImpl {
     public static <M extends AbstractContainerMenu> MenuType<M> getContainerMenuType(Class<? extends M> menuClass) {
         return new ExtendedScreenHandlerType<>(((i, arg, arg2) -> {
             try {
-                return menuClass.getConstructor(Integer.class, Player.class, BlockPos.class).newInstance(i, arg.player, arg2.readBlockPos());
+                return menuClass.getConstructor(Integer.class, Player.class, BlockPos.class).newInstance(i, arg.player, arg2);
             } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
                      InvocationTargetException e) {
                 throw new RuntimeException(e);
             }
-        }));
+        }), MultiloaderPacket.STREAM_CODEC);
     }
 
     public static void openMenu(ServerPlayer player, Level level, BlockState state, BlockPos pos) {

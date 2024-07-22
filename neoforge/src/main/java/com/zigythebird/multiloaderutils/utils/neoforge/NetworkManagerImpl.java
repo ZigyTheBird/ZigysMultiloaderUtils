@@ -1,6 +1,6 @@
 package com.zigythebird.multiloaderutils.utils.neoforge;
 
-import com.zigythebird.multiloaderutils.neoforge.network.MultiloaderPacket;
+import com.zigythebird.multiloaderutils.network.MultiloaderPacket;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -16,11 +16,11 @@ public class NetworkManagerImpl {
     public static Map<ResourceLocation, NetworkManager.NetworkReciever> recieverMap = new HashMap<>();
 
     public static void sendToPlayer(ServerPlayer player, ResourceLocation packet, FriendlyByteBuf buf) {
-        PacketDistributor.PLAYER.with(player).send(new MultiloaderPacket(buf, packet));
+        PacketDistributor.sendToPlayer(player, new MultiloaderPacket(buf, packet));
     }
 
     public static void sendToServer(ResourceLocation packet, FriendlyByteBuf buf) {
-        PacketDistributor.SERVER.noArg().send(new MultiloaderPacket(buf, packet));
+        PacketDistributor.sendToServer(new MultiloaderPacket(buf, packet));
     }
 
     public static void registerReceiver(NetworkManager.Side side, ResourceLocation id, NetworkManager.NetworkInterface networkInterface) {
