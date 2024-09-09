@@ -1,6 +1,7 @@
 package com.zigythebird.multiloaderutils.misc;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.Utf8String;
 import net.minecraft.network.codec.StreamCodec;
@@ -9,12 +10,11 @@ import net.minecraft.resources.ResourceLocation;
 public interface ModCodecs {
     StreamCodec<ByteBuf, FriendlyByteBuf> FRIENDLY_BYTE_BUF = new StreamCodec<ByteBuf, FriendlyByteBuf>() {
         public FriendlyByteBuf decode(ByteBuf byteBuf) {
-            return new FriendlyByteBuf(byteBuf.readBytes(byteBuf.readInt()));
+            return new FriendlyByteBuf(Unpooled.copiedBuffer(FriendlyByteBuf.readByteArray(byteBuf)));
         }
 
         public void encode(ByteBuf byteBuf, FriendlyByteBuf buf) {
-            byteBuf.writeInt(buf.readableBytes());
-            byteBuf.writeBytes(buf);
+            FriendlyByteBuf.writeByteArray(byteBuf, buf.array());
         }
     };
 
