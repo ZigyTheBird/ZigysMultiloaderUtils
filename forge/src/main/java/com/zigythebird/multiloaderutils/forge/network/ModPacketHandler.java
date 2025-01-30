@@ -34,8 +34,4 @@ public class ModPacketHandler {
                 .consumerMainThread(BufPacketC2S::apply)
                 .add();
     }
-
-    public static void registerVersionChecker(String mod_id, String version) {
-        NetworkRegistry.newSimpleChannel(new ResourceLocation(mod_id, "version_checker"), () -> version, version::equals, version::equals);
-    }
 }
