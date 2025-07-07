@@ -1,12 +1,7 @@
-name: 'Upload to Maven'
+name: Publish to maven repository.
 
 on:
-  workflow_dispatch:
-    secrets:
-      MAVEN_TOKEN:
-        required: true
-      REDLANCE_PASSWORD:
-        required: true
+  workflow_dispatch
 
 jobs:
   build:
