@@ -14,21 +14,9 @@ jar {
 }
 
 publishing {
-    repositories {
-        maven {
-            name = "zigythebirdmods"
-            url = "https://maven.zigythebird.com/mods"
-            credentials(PasswordCredentials)
-            authentication {
-                basic(BasicAuthentication)
-            }
-        }
-    }
     publications {
-        maven(MavenPublication) {
-            groupId = "com.zigythebird.multiloaderutils"
-            artifactId = "$mod_id-common-$minecraft_version"
-            version = rootProject.mod_version
+        mavenFabric(MavenPublication) {
+            artifactId = "ZigysMultiloaderUtilsCommon"
             from components.java
         }
     }
