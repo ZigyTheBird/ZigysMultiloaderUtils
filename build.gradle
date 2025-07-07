@@ -1,6 +1,6 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "1.6.+" apply false
+    id "dev.architectury.loom" version "1.10.+" apply false
 }
 
 architectury {
@@ -18,7 +18,7 @@ subprojects {
         minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
         mappings loom.layered() {
             officialMojangMappings()
-            parchment("org.parchmentmc.data:parchment-$rootProject.minecraft_version:$rootProject.parchment_version@zip")
+            parchment("org.parchmentmc.data:parchment-1.21.5:$rootProject.parchment_version@zip")
         }
     }
 }
@@ -33,7 +33,6 @@ allprojects {
     }
 
     version = rootProject.mod_version
-    group = rootProject.maven_group
 
     repositories {
         maven { url = "https://maven.parchmentmc.org" }
@@ -49,5 +48,18 @@ allprojects {
         withJavadocJar()
         withSourcesJar()
         javadoc.options.addStringOption('Xdoclint:none', '-quiet')
+    }
+
+    publishing {
+        repositories {
+            maven {
+                name = "RedlanceMinecraft"
+                url = "https://repo.redlance.org/public"
+                credentials {
+                    username = "ZigyTheBird"
+                    password = System.getenv("MAVEN_PASSWORD")
+                }
+            }
+        }
     }
 }

@@ -18,6 +18,6 @@ public class MultiloaderUtilsNeoForge {
 
     public static void registerPackets(final RegisterPayloadHandlersEvent event) {
         final PayloadRegistrar registrar = event.registrar(MultiloaderUtils.MOD_ID);
-        registrar.commonBidirectional(MultiloaderPacket.TYPE, MultiloaderPacket.STREAM_CODEC, MultiloaderPayloadHandler.getInstance()::handleData).versioned(PlatformImpl.getModVersion(MultiloaderUtils.MOD_ID));
+        registrar.commonBidirectional(MultiloaderPacket.TYPE, MultiloaderPacket.STREAM_CODEC, MultiloaderPayloadHandler.getInstance()::handleData, MultiloaderPayloadHandler.getInstance()::handleData);
     }
 }
