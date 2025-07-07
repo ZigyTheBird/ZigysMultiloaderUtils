@@ -68,9 +68,11 @@ components.java {
 }
 
 publishing {
-    maven(MavenPublication) {
-        groupId = "com.zigythebird.multiloaderutils"
-        artifactId = "$mod_id-fabric-$minecraft_version"
-        version = rootProject.mod_version
+    publications {
+        maven(MavenPublication) {
+            groupId = "com.zigythebird.multiloaderutils"
+            artifactId = "$mod_id-fabric-$minecraft_version"
+            version = rootProject.mod_version
+        }
     }
 }
