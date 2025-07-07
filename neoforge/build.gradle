@@ -60,10 +60,9 @@ components.java {
 }
 
 publishing {
-    publications {
-        mavenFabric(MavenPublication) {
-            artifactId = "ZigysMultiloaderUtilsNeoForge"
-            from components.java
-        }
+    maven(MavenPublication) {
+        groupId = "com.zigythebird.multiloaderutils"
+        artifactId = "$mod_id-neoforge-$minecraft_version"
+        version = rootProject.mod_version
     }
 }
